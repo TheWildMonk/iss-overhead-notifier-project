@@ -1,13 +1,13 @@
 # <u>**ISS Overhead Notifier Project**</u>
 
-A python based notification project to send 
+A python based notification project to send
 notification to the user whenever the International
 Space Station is over the current location.</br> </br>
 
 ![Password Manager](image.jpg) <br/>
 
 ### <u>**Libraries Used:**</u> <br />
-Smtplib<br/>
+Requests<br/>
 Datetime
 
 ### <u>**Project:**</u> <br/>
