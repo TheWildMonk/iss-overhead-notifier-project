@@ -16,7 +16,6 @@ data = response.json()
 
 iss_latitude = float(data["iss_position"]["latitude"])
 iss_longitude = float(data["iss_position"]["longitude"])
-iss_position = (iss_latitude, iss_longitude)
 
 
 def iss_overhead(latitude, longitude):
