@@ -4,12 +4,11 @@ import time
 from datetime import datetime
 
 # Constants
-MY_LAT = 23.761686
-MY_LONG = 90.434939
-MY_POSITION = (MY_LAT, MY_LONG)
-EMAIL = "thewildmonk.python@gmail.com"
-TEST_EMAIL = "thewildmonk@yahoo.com"
-password = "Abcd1234()"
+MY_LAT = 123
+MY_LONG = 123
+EMAIL = "demo@email.com"
+RECEIVER = "receiveremail@email.com"
+password = "##########"
 
 response = requests.get(url="http://api.open-notify.org/iss-now.json")
 response.raise_for_status()
@@ -28,7 +27,7 @@ def iss_overhead(latitude, longitude):
             with SMTP("smtp.gmail.com") as connection:
                 connection.starttls()
                 connection.login(user=EMAIL, password=password)
-                connection.sendmail(from_addr=EMAIL, to_addrs=TEST_EMAIL,
+                connection.sendmail(from_addr=EMAIL, to_addrs=RECEIVER,
                                     msg="subject: ISS OVERHEAD\n\n"
                                         "Hey, look up, the ISS is over your head!")
 
@@ -47,11 +46,10 @@ data = response.json()
 sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0])
 sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0])
 
+# Current time
 time_now = datetime.now()
-# If the ISS is close to my current position
-# and it is currently dark
-# Then send me an email to tell me to look up.
-# BONUS: run the code every 60 seconds.
+
+# While loop to run the program every 60s.
 is_sunset = True
 while is_sunset:
     if sunrise <= time_now.hour < sunset:
